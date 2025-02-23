@@ -20,7 +20,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.undofile = true
-vim.opt.mouse = ""
 -- key-mapping
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
@@ -37,7 +36,10 @@ require("config.lazy")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require('lspconfig')
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'pyright'}
+lspconfig.clangd.setup({
+    capabilities = capabilities,
+})
+local servers = {'pyright'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
