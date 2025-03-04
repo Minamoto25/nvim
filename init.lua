@@ -30,6 +30,8 @@ vim.keymap.set('v', 'K',":m '<-2<CR>gv=gv")
 vim.keymap.set('v', 'J',":m '>+1<CR>gv=gv")
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>t', ':ToggleTerm<CR>')
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 -- plugin manager
 require("config.lazy")
 
