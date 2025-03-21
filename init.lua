@@ -20,6 +20,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.undofile = true
+vim.opt.mouse = ""
 -- key-mapping
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
@@ -34,6 +35,17 @@ vim.keymap.set('v', 'J',":m '>+1<CR>gv=gv")
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<leader>t', ':ToggleTerm<CR>')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
+vim.keymap.set("n", "<leader>m", function()
+    if vim.opt.mouse._value == "a" then
+        vim.opt.mouse = ""
+        print("Mouse disabled")
+    else
+        vim.opt.mouse = "a"
+        print("Mouse enabled")
+    end
+end, { desc = "Toggle Mouse" })
+
 -- plugin manager
 require("config.lazy")
 
@@ -95,3 +107,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- auto save
+vim.api.nvim_create_autocmd({"InsertLeave", "TextChanged"}, {
+    pattern = "*",
+    command = "silent! w"
+})

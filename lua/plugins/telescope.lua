@@ -12,6 +12,11 @@ return {
             builtin.find_files {cwd = vim.fn.stdpath 'config'}
         end, {desc = 'Telescope search in nvim setting directory'}
         )
+        vim.keymap.set('n', '<leader>fo', builtin.lsp_document_symbols, { desc = 'Telescope find symbol' })
+        vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = 'Telescope find reference' })
+        vim.keymap.set('n', '<leader>fd', builtin.lsp_references, { desc = 'Telescope find defination' })
+        vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'Telescope find marks' })
+
 
         require('telescope').setup{
             defaults = {
